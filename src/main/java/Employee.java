@@ -1,28 +1,27 @@
 public class Employee {
-  // attributes
-  String name;
-  int age;
-  double salary;
-  String location;
+  private String name;
+  protected double salary;
+  private int age;
 
-  // constructor
-  public Employee(String name, int age, double salary, String location) {
+  public Employee(String name, double salary, int age) {
     this.name = name;
-    this.age = age;
     this.salary = salary;
-    this.location = location;
+    this.age = age;
   }
 
-  // behavior
-  void raiseSalary() {
-    this.salary = this.salary * 1.2;
+  public String getName() {
+    return this.name;
   }
 
-  void raiseSalary(double amount) {
-    this.salary += amount;
-  }
-
-  double getSalary() {
+  public double getSalary() {
     return this.salary;
+  }
+
+  public int getAge() {
+    return this.age;
+  }
+
+  public void raiseSalary() {
+    this.salary = this.salary * 1.2;
   }
 }
