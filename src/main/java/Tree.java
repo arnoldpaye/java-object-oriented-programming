@@ -4,6 +4,13 @@ public class Tree {
   double trunkDiameterInches;
   TreeType treeType;
 
+  // constructor
+  public Tree(double heightFt, double trunkDiameterInches, TreeType treeType) {
+    this.heightFt = heightFt;
+    this.trunkDiameterInches = trunkDiameterInches;
+    this.treeType = treeType;
+  }
+
   // behaviors
   void grow() {
     this.heightFt = this.heightFt + 10;
