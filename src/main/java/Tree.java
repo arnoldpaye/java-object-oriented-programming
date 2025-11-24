@@ -16,15 +16,33 @@ public class Tree {
     this.treeType = treeType;
   }
 
+  // class behavior
+  static void announceTree() {
+    System.out.println("Look out for that " + TRUNK_COLOR + " tree!");
+  }
+
+  // getters
+  public double getHeightFt() {
+    return this.heightFt;
+  }
+
+  public double getTrunkDiameterInches() {
+    return this.trunkDiameterInches;
+  }
+
+  public TreeType getTreeType() {
+    return this.treeType;
+  }
+
+  // setters
+  public void setTrunkDiameterInches(double trunkDiameterInches) {
+    this.trunkDiameterInches = trunkDiameterInches;
+  }
+
   // behaviors
   public void grow() {
     this.heightFt = this.heightFt + 10;
     this.trunkDiameterInches = this.trunkDiameterInches + 1;
-  }
-
-  // class behavior
-  static void announceTree() {
-    System.out.println("Look out for that " + TRUNK_COLOR + " tree!");
   }
 
   public void announceTallTree() {
