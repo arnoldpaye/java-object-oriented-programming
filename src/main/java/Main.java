@@ -1,9 +1,12 @@
 public class Main {
   public static void main(String[] args) {
-    Tree myFavoriteMapleTree = new Tree(90, 30, TreeType.MAPLE);
+    BankAccount bankAccount = new BankAccount("Arnex", 999.89);
 
-    System.out.println(myFavoriteMapleTree.getTreeType());
-    System.out.println(myFavoriteMapleTree.getHeightFt());
-    System.out.println(myFavoriteMapleTree.getTrunkDiameterInches());
+    System.out.println(bankAccount.getBalance());
+    bankAccount.withdraw(12.5);
+    bankAccount.deposit(18.1);
+
+    System.out.println(bankAccount.getOwner());
+    System.out.println(bankAccount.getBalance());
   }
 }
