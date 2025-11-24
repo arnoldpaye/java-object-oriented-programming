@@ -5,5 +5,8 @@ public class Main {
 
     myFavoriteOakTree.announceTallTree();
     myFavoriteMappleTree.announceTallTree();
+
+    System.out.println(Tree.TRUNK_COLOR);
+    Tree.announceTree();
   }
 }
