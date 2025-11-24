@@ -1,12 +1,11 @@
+import java.awt.Color;
+
 public class Main {
   public static void main(String[] args) {
-    Tree myFavoriteOakTree = new Tree(120, 12, TreeType.OAK);
-    Tree myFavoriteMappleTree = new Tree(90, 30, TreeType.MAPLE);
+    Color myTrunkColor = Tree.TRUNK_COLOR;
+    Color myDefaultWhite = Color.WHITE;
+    Color myDefaultBlue = Color.BLUE;
 
-    myFavoriteOakTree.announceTallTree();
-    myFavoriteMappleTree.announceTallTree();
-
-    System.out.println(Tree.TRUNK_COLOR);
-    Tree.announceTree();
+    Color brighterBlue = myDefaultBlue.brighter();
   }
 }
