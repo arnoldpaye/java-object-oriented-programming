@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 
@@ -9,7 +10,11 @@ public class ConditionArrayList extends ArrayList<Integer> {
   private Predicate<Integer> condition;
 
   public ConditionArrayList(Predicate<Integer> predicate, Integer... numbers) {
-    super(Arrays.stream(numbers).filter(predicate).toList());
+    super(new ConditionArrayList(predicate, Arrays.asList(numbers)));
+  }
+
+  public ConditionArrayList(Predicate<Integer> predicate, List<Integer> arrayList) {
+    super(arrayList.stream().filter(predicate).toList());
     this.condition = predicate;
   }
 

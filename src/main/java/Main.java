@@ -1,34 +1,28 @@
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.function.Predicate;
 
 public class Main {
-  public static void addRandomNumber(ArrayList<Integer> list) {
-    int originalSize = list.size();
-    Random random = new Random();
-    while (originalSize + 1 != list.size()) {
-      int n = random.nextInt(1000);
-
-      if (list instanceof ConditionArrayList conditionArrayList) {
-        while (!conditionArrayList.isEligible(n)) {
-          n = random.nextInt(1000);
-        }
-      }
-
-      list.add(n);
-    }
-  }
 
   public static void main(String[] args) {
-    ConditionArrayList oddList = new ConditionArrayList(n -> Math.abs(n) % 2 == 1);
-    oddList.add(1);
-    oddList.add(2);
-    addRandomNumber(oddList);
-    System.out.println(oddList);
 
-    ArrayList<Integer> eventList = new ConditionArrayList(n -> Math.abs(n) % 2 == 0);
-    eventList.add(1);
-    eventList.add(2);
-    addRandomNumber(eventList);
-    System.out.println(eventList);
+    Predicate<Integer> isDivisibleByThree = n -> Math.abs(n) % 3 == 0;
+    ConditionArrayList divisibleByThreeListy =
+        new ConditionArrayList(isDivisibleByThree);
+
+    ConditionArrayList divisibleByThreeListy2 =
+        new ConditionArrayList(isDivisibleByThree,
+            1, 2, 3, 4, 5, 6, 9);
+
+    ArrayList<Integer> numsList = new ArrayList<>();
+    numsList.add(1);
+    numsList.add(4);
+    numsList.add(3);
+    numsList.add(6);
+    numsList.add(13);
+
+    ConditionArrayList divisibleByThreeListy3 = new ConditionArrayList(isDivisibleByThree, numsList);
+
+    Predicate<Integer> isDivisibleBySix = n -> Math.abs(n) % 6 == 0;
+    ConditionArrayList divisibleBySixList = new ConditionArrayList(isDivisibleBySix, divisibleByThreeListy);
   }
 }
