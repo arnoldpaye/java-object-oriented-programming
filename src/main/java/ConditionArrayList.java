@@ -1,24 +1,28 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 
-public class OddArrayList extends ArrayList<Integer> {
+public class ConditionArrayList extends ArrayList<Integer> {
 
-  public OddArrayList(Integer... numbers) {
-    super(Arrays.stream(numbers).filter(OddArrayList::isOdd).toList());
+  private Predicate<Integer> condition;
+
+  public ConditionArrayList(Predicate<Integer> predicate, Integer... numbers) {
+    super(Arrays.stream(numbers).filter(predicate).toList());
+    this.condition = predicate;
   }
 
   @Override
   public void add(int index, Integer element) {
-    if (isOdd(element)) {
+    if (isEligible(element)) {
       super.add(index, element);
     }
   }
 
   @Override
   public boolean add(Integer integer) {
-    if (isOdd(integer)) {
+    if (isEligible(integer)) {
       return super.add(integer);
     } else {
       return false;
@@ -27,17 +31,17 @@ public class OddArrayList extends ArrayList<Integer> {
 
   @Override
   public boolean addAll(Collection<? extends Integer> c) {
-    return super.addAll(c.stream().filter(OddArrayList::isOdd).toList());
+    return super.addAll(c.stream().filter(this::isEligible).toList());
   }
 
   @Override
   public boolean addAll(int index, Collection<? extends Integer> c) {
-    return super.addAll(index, c.stream().filter(OddArrayList::isOdd).toList());
+    return super.addAll(index, c.stream().filter(this::isEligible).toList());
   }
 
   @Override
   public Integer set(int index, Integer element) {
-    if (isOdd(element)) {
+    if (isEligible(element)) {
       return super.set(index, element);
     } else {
       System.out.println(element + " is not odd.");
@@ -48,10 +52,10 @@ public class OddArrayList extends ArrayList<Integer> {
   @Override
   public void replaceAll(UnaryOperator<Integer> operator) {
     super.replaceAll(operator);
-    super.removeIf(n -> !isOdd(n));
+    super.removeIf(n -> !isEligible(n));
   }
 
-  public static boolean isOdd(Integer element) {
-    return Math.abs(element) % 2 == 1;
+  public boolean isEligible(Integer element) {
+    return this.condition.test(element);
   }
 }

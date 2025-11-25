@@ -7,23 +7,28 @@ public class Main {
     Random random = new Random();
     while (originalSize + 1 != list.size()) {
       int n = random.nextInt(1000);
+
+      if (list instanceof ConditionArrayList conditionArrayList) {
+        while (!conditionArrayList.isEligible(n)) {
+          n = random.nextInt(1000);
+        }
+      }
+
       list.add(n);
     }
   }
 
   public static void main(String[] args) {
-    OddArrayList oddArrayList = new OddArrayList(7);
-    oddArrayList.add(1);
-    oddArrayList.add(2);
-    addRandomNumber(oddArrayList);
-    System.out.println(oddArrayList.size());
-    System.out.println(oddArrayList);
+    ConditionArrayList oddList = new ConditionArrayList(n -> Math.abs(n) % 2 == 1);
+    oddList.add(1);
+    oddList.add(2);
+    addRandomNumber(oddList);
+    System.out.println(oddList);
 
-    ArrayList<Integer> arrayList = new ArrayList<>();
-    arrayList.add(1);
-    arrayList.add(2);
-    addRandomNumber(arrayList);
-    System.out.println(arrayList.size());
-    System.out.println(arrayList);
+    ArrayList<Integer> eventList = new ConditionArrayList(n -> Math.abs(n) % 2 == 0);
+    eventList.add(1);
+    eventList.add(2);
+    addRandomNumber(eventList);
+    System.out.println(eventList);
   }
 }
