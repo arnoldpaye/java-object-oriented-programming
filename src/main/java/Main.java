@@ -1,19 +1,29 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Main {
-  public static void main(String[] args) {
-    OddArrayList oddArrayList = new OddArrayList(1, 2, 3, 4, 5, 6, 7, 9, -13);
+  public static void addRandomNumber(ArrayList<Integer> list) {
+    int originalSize = list.size();
+    Random random = new Random();
+    while (originalSize + 1 != list.size()) {
+      int n = random.nextInt(1000);
+      list.add(n);
+    }
+  }
 
+  public static void main(String[] args) {
+    OddArrayList oddArrayList = new OddArrayList(7);
+    oddArrayList.add(1);
+    oddArrayList.add(2);
+    addRandomNumber(oddArrayList);
+    System.out.println(oddArrayList.size());
     System.out.println(oddArrayList);
 
-    ArrayList<Integer> list = new ArrayList<>();
-    list.add(1);
-    list.add(2);
-    list.add(3);
-    list.add(4);
-    list.add(7);
-    list.add(9);
-    list.add(-13);
-    System.out.println(list);
+    ArrayList<Integer> arrayList = new ArrayList<>();
+    arrayList.add(1);
+    arrayList.add(2);
+    addRandomNumber(arrayList);
+    System.out.println(arrayList.size());
+    System.out.println(arrayList);
   }
 }
